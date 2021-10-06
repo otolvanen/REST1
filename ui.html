@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        $('[name="Submit1"]').click(function () {
+            var form =  JSON.stringify($("#form").serializeArray());
+            $.ajax({
+                url: "http://localhost:3000/get",
+                type: 'GET',
+                contentType: "application/json",
+                data: {form},
+                success: function(data) {
+                    console.log(data.value);
+                    $("#en").val(data.value);
+                    
+                },
+                error: function(request, status, error) {
+                    console.log(error);
+                }
+                    });
+            
+            });
+            
+       
+        
+          
+          $('[name="Submit2"]').click(function () {
+            var form =  JSON.stringify($("#form").serializeArray());
+            $.ajax({
+                url: "http://localhost:3000/post",
+                type: 'POST',
+                contentType: "application/json",
+                data: {form},
+                success: function(data) {
+                    console.log(data.value);
+                    $("#en").val(data.value);
+                    
+                },
+                error: function(request, status, error) {
+                    console.log(error);
+                }
+                    });
+            
+            });
+
+        });
+            
+       
+          
+         
+       
+    </script>
+  </head>
+  <body>
+   
+ <form id="form" name="form">
+      <th>Sanapari</th>
+      <td>
+        <input
+          name="fi"
+          id="fi"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+      <td>
+        <input
+          name="en"
+          id="en"
+          type="text"
+          value=""
+          maxlength="35"
+          size="35"
+        />
+      </td>
+
+      <td>
+        <input name="Submit1" type="button" value="Kysy" />
+        <input name="Submit2" type="button" value="Lisää" />
+      </td>
+    </form>
+  </body>
+</html>
